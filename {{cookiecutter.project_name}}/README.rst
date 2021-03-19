@@ -10,6 +10,8 @@
 
 |pre-commit| |Black|
 
+|MyBadge|
+
 .. |PyPI| image:: https://img.shields.io/pypi/v/{{cookiecutter.project_name}}.svg
    :target: https://pypi.org/project/{{cookiecutter.project_name}}/
    :alt: PyPI
@@ -34,6 +36,8 @@
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Black
+.. |MyBadge| image:: https://img.shields.io/badge/mybadge-3.xx|3.yy-blue
+   :alt: My Badge
 
 
 Features
