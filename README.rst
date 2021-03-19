@@ -52,9 +52,25 @@ Cookiecutter_ template for a Python package based on the
 
 __ https://cookiecutter-hypermodern-python.readthedocs.io/
 
+Changes in (this) fork by Geir Inge Sandnes:
+
+* Documentation is built by Sphinx in folder sphinx/ instead of in docs/, as suggested for Github Pages.
+* So: After running the cookiecutter, rename docs/ to sphinx/.
+* All nox sessions have been updated to work with sphinx/.
+* CodeCov for private repos: Add CODECOV_TOKEN as Secrets in Github repo. Uncomment last two line in .github/workflows/tests.yml.
+
 
 Usage
 =====
+This cookiecutter:
+
+ .. code:: console
+
+    $ cookiecutter gh:gisandnes/cookiecutter-hypermodern-python-gh
+    $ cd <repo>
+    $ mv docs sphinx
+
+Original cookiecutter:
 
 .. code:: console
 
