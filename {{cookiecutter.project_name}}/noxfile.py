@@ -1,4 +1,5 @@
 """Nox sessions."""
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -19,6 +20,7 @@ nox.options.sessions = (
     "typeguard",
     "xdoctest",
     "docs-build",
+    "cp-build2docs",
 )
 
 
@@ -185,3 +187,15 @@ def docs(session: Session) -> None:
         shutil.rmtree(build_dir)
 
     session.run("sphinx-autobuild", *args)
+
+
+@session(name="cp-build2docs", python="3.8")
+def cp_build2docs(session: Session) -> None:
+    """Copy files from sphinx/_build/ to docs/. Add .nojekyll for GitHub Pages."""
+    build_dir = Path("sphinx", "_build")
+    docs_dir = Path("docs")
+    if docs_dir.exists():
+        shutil.rmtree(docs_dir)
+
+    os.system("cp -R " + str(build_dir) + " " + str(docs_dir))
+    os.system("touch " + str(docs_dir) + "/.nojekyll")
