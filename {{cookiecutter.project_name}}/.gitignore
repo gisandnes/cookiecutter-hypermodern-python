@@ -5,5 +5,7 @@
 /.pytype/
 /dist/
 /docs/_build/
+/sphinx/_build/
 /src/*.egg-info/
 __pycache__/
+.DS_Store
