@@ -74,7 +74,7 @@ Original cookiecutter:
 
 .. code:: console
 
-   $ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python --checkout=2021.3.14
+   $ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python --checkout=2021.4.15
 
 
 Features
