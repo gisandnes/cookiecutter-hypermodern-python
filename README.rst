@@ -74,7 +74,7 @@ Original cookiecutter:
 
 .. code:: console
 
-   $ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python --checkout=2021.4.15
+   $ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python --checkout=2021.11.10
 
 
 Features
@@ -86,7 +86,7 @@ Features
 - Test automation with Nox_
 - Linting with pre-commit_ and Flake8_
 - Continuous integration with `GitHub Actions`_
-- Documentation with Sphinx_ and `Read the Docs`_
+- Documentation with Sphinx_ and `Read the Docs`_ using the furo_ theme
 - Automated uploads to PyPI_ and TestPyPI_
 - Automated release notes with `Release Drafter`_
 - Automated dependency updates with Dependabot_
@@ -97,13 +97,14 @@ Features
 - Command-line interface with Click_
 - Static type-checking with mypy_
 - Runtime type-checking with Typeguard_
+- Automated Python syntax upgrades with pyupgrade_
 - Security audit with Bandit_ and Safety_
 - Check documentation examples with xdoctest_
 - Generate API documentation with autodoc_ and napoleon_
 - Generate command-line reference with sphinx-click_
 - Manage project labels with `GitHub Labeler`_
 
-The template supports Python 3.6, 3.7, 3.8, and 3.9.
+The template supports Python 3.7, 3.8, 3.9, and 3.10.
 
 .. features-end
 
@@ -130,10 +131,12 @@ The template supports Python 3.6, 3.7, 3.8, and 3.9.
 .. _TestPyPI: https://test.pypi.org/
 .. _Typeguard: https://github.com/agronholm/typeguard
 .. _autodoc: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html
+.. _furo: https://pradyunsg.me/furo/
 .. _mypy: http://mypy-lang.org/
 .. _napoleon: https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html
 .. _pre-commit: https://pre-commit.com/
 .. _pytest: https://docs.pytest.org/en/latest/
+.. _pyupgrade: https://github.com/asottile/pyupgrade
 .. _sphinx-click: https://sphinx-click.readthedocs.io/
 .. _xdoctest: https://github.com/Erotemic/xdoctest
 .. _GitHub Labeler: https://github.com/marketplace/actions/github-labeler

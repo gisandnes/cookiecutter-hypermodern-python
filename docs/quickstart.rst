@@ -10,13 +10,13 @@ Install Cookiecutter_:
 
    $ pipx install cookiecutter
 
-Install Poetry_ by downloading and running get-poetry.py_:
+Install Poetry_ by downloading and running install-poetry.py_:
 
-.. _get-poetry.py: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
+.. _install-poetry.py: https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py
 
 .. code:: console
 
-   $ python get-poetry.py
+   $ python install-poetry.py
 
 Install Nox_ and nox-poetry_:
 
@@ -27,7 +27,7 @@ Install Nox_ and nox-poetry_:
 
 pipx_ is preferred, but you can also install with ``pip install --user``.
 
-It is recommended to set up Python 3.6, 3.7, 3.8, and 3.9 using pyenv_.
+It is recommended to set up Python 3.7, 3.8, 3.9, 3.10 using pyenv_.
 
 
 Creating a project
@@ -38,7 +38,7 @@ Generate a Python project:
 .. code:: console
 
    $ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python \
-     --checkout="2021.4.15"
+     --checkout="2021.11.10"
 
 Change to the root directory of your new project,
 and create a Git repository:

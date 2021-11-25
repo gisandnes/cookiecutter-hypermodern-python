@@ -8,10 +8,6 @@ a Python template based on the `Hypermodern Python`_ article series.
 If you're in a hurry, check out the :doc:`quickstart guide <quickstart>`
 and the :ref:`tutorials <Tutorials>`.
 
-.. contents::
-    :local:
-    :backlinks: none
-
 
 Introduction
 ~~~~~~~~~~~~
@@ -56,16 +52,14 @@ Here is a detailed list of features for this Python template:
    :end-before: features-end
 
 
-Release cadence
----------------
+Version policy
+--------------
 
-The |HPC| has a monthly release cadence while in alpha status.
-Releases happen on the 15th of every month.
-We use `Calendar Versioning`_ with a ``YYYY.MM.DD`` versioning scheme.
+The |HPC| uses `Calendar Versioning`_ with a ``YYYY.MM.DD`` versioning scheme.
 
-The current stable release is `2021.4.15`_.
+The current stable release is `2021.11.10`_.
 
-.. _2021.4.15: https://github.com/cjolowicz/cookiecutter-hypermodern-python/releases/tag/2021.4.15
+.. _2021.11.10: https://github.com/cjolowicz/cookiecutter-hypermodern-python/releases/tag/2021.11.10
 
 
 .. _Installation:
@@ -145,14 +139,14 @@ using one of the commands listed in the
 __ https://github.com/pyenv/pyenv/wiki/Common-build-problems
 
 Install the latest point release of every supported Python version.
-This project template supports Python 3.6, 3.7, 3.8, and 3.9.
+This project template supports Python 3.7, 3.8, 3.9, and 3.10.
 
 .. code:: console
 
-   $ pyenv install 3.6.12
-   $ pyenv install 3.7.9
-   $ pyenv install 3.8.6
-   $ pyenv install 3.9.0
+   $ pyenv install 3.7.12
+   $ pyenv install 3.8.12
+   $ pyenv install 3.9.8
+   $ pyenv install 3.10.0
 
 After creating your project (see :ref:`below <Creating a project>`),
 you can make these Python versions accessible in the project directory,
@@ -160,7 +154,7 @@ using the following command:
 
 .. code:: console
 
-   $ pyenv local 3.9.0 3.8.6 3.7.9 3.6.12
+   $ pyenv local 3.10.0 3.9.8 3.8.12 3.7.12
 
 The first version listed is the one used when you type plain ``python``.
 Every version can be used by invoking ``python<major.minor>``.
@@ -194,13 +188,13 @@ Install Cookiecutter_ using pipx:
 
    $ pipx install cookiecutter
 
-Install Poetry_ by downloading and running get-poetry.py_:
+Install Poetry_ by downloading and running install-poetry.py_:
 
-.. _get-poetry.py: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
+.. _install-poetry.py: https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py
 
 .. code:: console
 
-   $ python get-poetry.py
+   $ python install-poetry.py
 
 Install Nox_ and nox-poetry_ using pipx:
 
@@ -208,6 +202,14 @@ Install Nox_ and nox-poetry_ using pipx:
 
    $ pipx install nox
    $ pipx inject nox nox-poetry
+
+Remember to upgrade these tools regularly:
+
+.. code:: console
+
+   $ pipx upgrade cookiecutter
+   $ pipx upgrade --include-injected nox
+   $ poetry self update
 
 
 Project creation
@@ -220,12 +222,12 @@ Creating a project
 
 Create a project from this template
 by pointing Cookiecutter to its `GitHub repository <Hypermodern Python Cookiecutter_>`__.
-Use the ``--checkout`` option with the `current stable release <2021.4.15_>`__:
+Use the ``--checkout`` option with the `current stable release <2021.11.10_>`__:
 
 .. code:: console
 
    $ cookiecutter gh:cjolowicz/cookiecutter-hypermodern-python \
-     --checkout="2021.4.15"
+     --checkout="2021.11.10"
 
 Cookiecutter downloads the template,
 and asks you a series of questions about project variables,
@@ -237,21 +239,21 @@ using a subdirectory with the same name as your project.
 Here is a complete list of the project variables defined by this template:
 
 .. table:: Project variables
-   :class: hypermodern-table
    :widths: auto
 
-   ================== =============================== ======================
-   Variable           Description                     Example
-   ================== =============================== ======================
-   ``project_name``   Project name on PyPI and GitHub ``hypermodern-python``
-   ``package_name``   Import name of the package      ``hypermodern_python``
-   ``friendly_name``  Friendly project name           ``Hypermodern Python``
-   ``author``         Primary author                  Katherine Johnson
-   ``email``          E-mail address of the author    katherine@example.com
-   ``github_user``    GitHub username of the author   ``katherine``
-   ``version``        Initial project version         ``0.0.0``
-   ``license``        The project license             ``MIT``
-   ================== =============================== ======================
+   ====================== ================================= ===================================
+   Variable               Description                       Example
+   ====================== ================================= ===================================
+   ``project_name``       Project name on PyPI and GitHub   ``hypermodern-python``
+   ``package_name``       Import name of the package        ``hypermodern_python``
+   ``friendly_name``      Friendly project name             ``Hypermodern Python``
+   ``author``             Primary author                    Katherine Johnson
+   ``email``              E-mail address of the author      katherine@example.com
+   ``github_user``        GitHub username of the author     ``katherine``
+   ``version``            Initial project version           ``0.0.0``
+   ``license``            The project license               ``MIT``
+   ``development_status`` Development status of the project ``Development Status :: 3 - Alpha``
+   ====================== ================================= ===================================
 
 .. note::
 
@@ -338,7 +340,6 @@ This section provides an overview of all the files generated for your project.
 Let's start with the directory layout:
 
 .. table:: Directories
-   :class: hypermodern-table
    :widths: auto
 
    ===================================== ===============================
@@ -352,7 +353,6 @@ The Python package is located in the ``src/<package>`` directory.
 For more details on these files, refer to the section :ref:`The initial package`.
 
 .. table:: Python package
-   :class: hypermodern-table
    :widths: auto
 
    ===================================== ===============================
@@ -365,7 +365,6 @@ The test suite is located in the ``tests`` directory.
 For more details on these files, refer to the section :ref:`The test suite`.
 
 .. table:: Test suite
-   :class: hypermodern-table
    :widths: auto
 
    ===================================== ===============================
@@ -377,7 +376,6 @@ The project documentation is written in reStructuredText_.
 The documentation files in the top-level directory are rendered on GitHub_:
 
 .. table:: Documentation files (top-level)
-   :class: hypermodern-table
    :widths: auto
 
    ======================= ============================================
@@ -392,7 +390,6 @@ built using :ref:`Sphinx <Documentation>` and
 hosted on :ref:`Read the Docs <Read the Docs integration>`:
 
 .. table:: Documentation files (Sphinx)
-   :class: hypermodern-table
    :widths: auto
 
    ====================== =======================================================
@@ -406,7 +403,6 @@ hosted on :ref:`Read the Docs <Read the Docs integration>`:
 The ``.github/workflows`` directory contains the :ref:`GitHub Actions workflows <GitHub Actions workflows>`:
 
 .. table:: GitHub Actions workflows
-   :class: hypermodern-table
    :widths: auto
 
    ======================= ===============================
@@ -421,7 +417,6 @@ The table below lists these files,
 and links each file to a section with more details.
 
 .. table:: Configuration files
-   :class: hypermodern-table
    :widths: auto
 
    ===================================== ========================================
@@ -437,10 +432,10 @@ and links each file to a section with more details.
    ``.readthedocs.yml``                  Configuration for :ref:`Read the Docs <Read the Docs integration>`
    ``codecov.yml``                       Configuration for :ref:`Codecov <Codecov integration>`
    ``docs/conf.py``                      Configuration for :ref:`Sphinx <Documentation>`
-   ``mypy.ini``                          Configuration for :ref:`mypy <Type-checking with mypy>`
    ``noxfile.py``                        Configuration for :ref:`Nox <Using Nox>`
    ``pyproject.toml``                    :ref:`Python package <The pyproject.toml file>` configuration,
                                          and configuration for :ref:`Coverage.py <The coverage session>`
+                                         and :ref:`mypy <Type-checking with mypy>`
    ===================================== ========================================
 
 .. _.gitignore: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_ignoring
@@ -451,7 +446,6 @@ The table below lists some additional files with pinned dependencies.
 Follow the links for more details on these.
 
 .. table:: Dependency files
-   :class: hypermodern-table
    :widths: auto
 
    ===================================== ================================
@@ -617,7 +611,7 @@ __ https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 The project documentation is built and hosted on
 :ref:`Read the Docs <Read the Docs integration>`,
-and uses their official theme sphinx-rtd-theme_.
+and uses the furo_ Sphinx theme.
 
 You can also build the documentation locally using Nox,
 see :ref:`The docs session`.
@@ -681,7 +675,7 @@ as long as the version number does not indicate a breaking change.
 only major releases may contain breaking changes,
 once a project has reached version 1.0.0.)
 
-.. _Versions and constraints: https://python-poetry.org/docs/versions/
+.. _Versions and constraints: https://python-poetry.org/docs/dependency-specification/
 .. _Semantic Versioning: https://semver.org/
 
 .. note::
@@ -737,7 +731,6 @@ The template also comes with various development dependencies.
 See the table below for an overview of the dependencies of generated projects:
 
 .. table:: Dependencies
-   :class: hypermodern-table
    :widths: auto
 
    ======================= ====================================================================================
@@ -745,22 +738,24 @@ See the table below for an overview of the dependencies of generated projects:
    click_                  Composable command line interface toolkit
    coverage__              Code coverage measurement for Python
    darglint_               A utility for ensuring Google-style docstrings stay up to date with the source code.
-   flake8_                 The modular source code checker: pep8 pyflakes and co
+   flake8_                 the modular source code checker: pep8 pyflakes and co
    flake8-bandit_          Automated security testing with bandit and flake8.
    flake8-bugbear_         A plugin for flake8 finding likely bugs and design problems in your program.
    flake8-docstrings_      Extension for flake8 which uses pydocstyle to check docstrings
    flake8-rst-docstrings_  Python docstring reStructuredText (RST) validator
+   furo_                   A clean customisable Sphinx documentation theme.
    mypy_                   Optional static typing for Python
    pep8-naming_            Check PEP-8 naming conventions, plugin for flake8
-   pre-commit_             A framework for managing and maintaining multi-language pre-commit hooks
+   pre-commit_             A framework for managing and maintaining multi-language pre-commit hooks.
    pre-commit-hooks_       Some out-of-the-box hooks for pre-commit.
-   pytest_                 Simple powerful testing with Python
+   pygments_               Pygments is a syntax highlighting package written in Python.
+   pytest_                 pytest: simple powerful testing with Python
+   pyupgrade_              A tool to automatically upgrade syntax for newer versions.
    reorder-python-imports_ Tool for reordering python imports
-   safety_                 Checks installed dependencies for known vulnerabilities
+   safety_                 Checks installed dependencies for known vulnerabilities.
    sphinx_                 Python documentation generator
-   sphinx-autobuild_       Watch a Sphinx directory and rebuild the documentation when a change is detected
+   sphinx-autobuild_       Rebuild Sphinx documentation on changes, with live-reload in the browser.
    sphinx-click_           Sphinx extension that automatically documents click applications
-   sphinx-rtd-theme_       Read the Docs theme for Sphinx
    typeguard_              Run-time type checker for Python
    xdoctest_               A rewrite of the builtin doctest module
    ======================= ====================================================================================
@@ -857,7 +852,7 @@ it creates a special ``.egg-link`` file that links to your local source code.
 This means that code edits are directly visible in the environment
 without the need to reinstall your package.
 
-__ https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs
+__ https://pip.pypa.io/en/stable/cli/pip_install/#install-editable
 
 Installing your package implicitly creates the virtual environment
 if it does not exist yet,
@@ -880,13 +875,13 @@ and easily switch between them:
 
 .. code:: console
 
-   $ poetry env use 3.6
    $ poetry env use 3.7
    $ poetry env use 3.8
    $ poetry env use 3.9
+   $ poetry env use 3.10
 
 Only one Poetry environment can be active at any time.
-Note that ``3.9`` comes last,
+Note that ``3.10`` comes last,
 to ensure that the current Python release is the active environment.
 Install your package with ``poetry install`` into each environment after creating it.
 
@@ -1080,7 +1075,7 @@ For example, the following may be more practical during development
 
 .. code:: console
 
-   $ nox -p 3.9 -rs tests mypy
+   $ nox -p 3.10 -rs tests mypy
 
 .. _--reuse-existing-virtualenvs: https://nox.thea.codes/en/stable/usage.html#re-using-virtualenvs
 
@@ -1100,21 +1095,20 @@ Overview of Nox sessions
 The following table gives an overview of the available Nox sessions:
 
 .. table:: Nox sessions
-   :class: hypermodern-table
    :widths: auto
 
    ========================================== ===================================== ================== =========
    Session                                    Description                           Python              Default
    ========================================== ===================================== ================== =========
-   :ref:`coverage <The coverage session>`     Report coverage with Coverage.py_     ``3.9``               (✓)
-   :ref:`docs <The docs session>`             Build and serve Sphinx_ documentation ``3.8``
-   :ref:`docs-build <The docs-build session>` Build Sphinx_ documentation           ``3.8``                ✓
-   :ref:`mypy <The mypy session>`             Type-check with mypy_                 ``3.6`` … ``3.9``      ✓
-   :ref:`pre-commit <The pre-commit session>` Lint with pre-commit_                 ``3.9``                ✓
-   :ref:`safety <The safety session>`         Scan dependencies with Safety_        ``3.9``                ✓
-   :ref:`tests <The tests session>`           Run tests with pytest_                ``3.6`` … ``3.9``      ✓
-   :ref:`typeguard <The typeguard session>`   Type-check with Typeguard_            ``3.6`` … ``3.9``      ✓
-   :ref:`xdoctest <The xdoctest session>`     Run examples with xdoctest_           ``3.6`` … ``3.9``      ✓
+   :ref:`coverage <The coverage session>`     Report coverage with Coverage.py_     ``3.10``              (✓)
+   :ref:`docs <The docs session>`             Build and serve Sphinx_ documentation ``3.10``
+   :ref:`docs-build <The docs-build session>` Build Sphinx_ documentation           ``3.10``               ✓
+   :ref:`mypy <The mypy session>`             Type-check with mypy_                 ``3.7`` … ``3.10``     ✓
+   :ref:`pre-commit <The pre-commit session>` Lint with pre-commit_                 ``3.10``               ✓
+   :ref:`safety <The safety session>`         Scan dependencies with Safety_        ``3.10``               ✓
+   :ref:`tests <The tests session>`           Run tests with pytest_                ``3.7`` … ``3.10``     ✓
+   :ref:`typeguard <The typeguard session>`   Type-check with Typeguard_            ``3.7`` … ``3.10``     ✓
+   :ref:`xdoctest <The xdoctest session>`     Run examples with xdoctest_           ``3.7`` … ``3.10``     ✓
    ========================================== ===================================== ================== =========
 
 
@@ -1179,7 +1173,7 @@ using the current stable release of Python:
 
 .. code:: console
 
-   $ nox --session=mypy --python=3.9
+   $ nox --session=mypy --python=3.10
 
 Use the separator ``--`` to pass additional options and arguments to ``mypy``.
 For example, the following command type-checks only the ``__main__`` module:
@@ -1262,7 +1256,7 @@ using the current stable release of Python:
 
 .. code:: console
 
-   $ nox --session=tests --python=3.9
+   $ nox --session=tests --python=3.10
 
 Use the separator ``--`` to pass additional options to ``pytest``.
 For example, the following command runs only the test case ``test_main_succeeds``:
@@ -1317,6 +1311,9 @@ using the ``tool.coverage`` table.
 The configuration informs the tool about your package name and source tree layout.
 It also enables branch analysis and the display of line numbers for missing coverage,
 and specifies the target coverage percentage.
+Coverage is measured for the package as well as `the test suite itself`__.
+
+__ https://nedbatchelder.com/blog/202008/you_should_include_your_tests_in_coverage.html
 
 During continuous integration,
 coverage data is uploaded to the Codecov_ reporting service.
@@ -1359,7 +1356,7 @@ with the current stable release of Python:
 
 .. code:: console
 
-   $ nox --session=typeguard --python=3.9
+   $ nox --session=typeguard --python=3.10
 
 Use the separator ``--`` to pass additional options and arguments to pytest.
 For example, the following command runs only tests for the ``__main__`` module:
@@ -1402,7 +1399,7 @@ using the current stable release of Python:
 
 .. code:: console
 
-   $ nox --session=xdoctest --python=3.9
+   $ nox --session=xdoctest --python=3.10
 
 By default, the Nox session uses the ``all`` subcommand to run all examples.
 You can also list examples using the ``list`` subcommand,
@@ -1645,13 +1642,13 @@ Overview of pre-commit hooks
 The |HPC| comes with a pre-commit configuration consisting of the following hooks:
 
 .. table:: pre-commit hooks
-   :class: hypermodern-table
    :widths: auto
 
    ======================== ===============================================
    `black <Black_>`__       Run the Black_ code formatter
    `flake8 <Flake8_>`__     Run the Flake8_ linter
    `prettier <Prettier_>`__ Run the Prettier_ code formatter
+   pyupgrade_               Upgrade syntax to newer versions of Python
    check-added-large-files_ Prevent giant files from being committed
    check-toml_              Validate TOML_ files
    check-yaml_              Validate YAML_ files
@@ -1704,6 +1701,20 @@ and moves them after normal imports.
 Any duplicate imports are removed.
 
 
+The pyupgrade hook
+------------------
+
+pyupgrade_ upgrades your source code
+to newer versions of the Python language and standard library.
+The tool analyzes the `abstract syntax tree`__ of the modules in your project,
+replacing deprecated or legacy usages with modern idioms.
+
+The minimum supported Python version is declared in the relevant section of ``.pre-commit-config.yaml``.
+You should change this setting whenever you drop support for an old version of Python.
+
+__ https://docs.python.org/3/library/ast.html
+
+
 Hooks from pre-commit-hooks
 ---------------------------
 
@@ -1739,7 +1750,6 @@ The following table lists the Flake8 plugins used by the |HPC|,
 and links to their lists of error codes.
 
 .. table:: Flake8 plugins
-   :class: hypermodern-table
    :widths: auto
 
    ================================ ============================================= ======================================
@@ -1969,8 +1979,9 @@ Type-checking with mypy
 mypy_ is the pioneer and *de facto* reference implementation of static type checking in Python.
 Invoke mypy via Nox, as explained in the section :ref:`The mypy session`.
 
-Configure mypy using the ``mypy.ini`` configuration file in the project directory.
-For details about supported configuration options, see the `official reference`__.
+mypy is configured in the ``pyproject.toml`` file,
+using the ``tool.mypy`` table. For details about supported configuration
+options, see the `official reference`__.
 
 __ https://mypy.readthedocs.io/en/stable/config_file.html
 
@@ -1978,14 +1989,11 @@ The |HPC| enables several configuration options which are off by default.
 The following options are enabled for strictness and enhanced output:
 
 - :option:`strict <mypy --strict>`
+- :option:`warn_unreachable <mypy --warn-unreachable>`
 - :option:`pretty <mypy --pretty>`
 - :option:`show_column_numbers <mypy --show-column-numbers>`
 - :option:`show_error_codes <mypy --show-error-codes>`
 - :option:`show_error_context <mypy --show-error-context>`
-
-The :option:`ignore_missing_imports <mypy --ignore-missing-imports>` option
-is used to disable import errors for selected packages
-where type information is not yet available.
 
 
 .. _External services:
@@ -2079,7 +2087,6 @@ __ https://docs.github.com/en/github/administering-a-repository/configuration-op
 It manages the following dependencies:
 
 .. table::
-   :class: hypermodern-table
    :widths: auto
 
    =================== ===================================== ================================================
@@ -2178,7 +2185,6 @@ Overview of workflows
 The |HPC| defines the following workflows:
 
 .. table:: GitHub Actions workflows
-   :class: hypermodern-table
    :widths: auto
 
    ===================================================== ======================== ==================================== =====================
@@ -2196,7 +2202,6 @@ Overview of GitHub Actions
 Workflows use the following GitHub Actions:
 
 .. table:: GitHub Actions
-   :class: hypermodern-table
    :widths: auto
 
    ============================================ =========================================================
@@ -2275,20 +2280,19 @@ as shown in the table below:
 __ https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources
 
 .. table:: Jobs in the Tests workflow
-   :class: hypermodern-table
    :widths: auto
 
    ========================================== ====================== ==================
    Nox session                                Platform               Python versions
    ========================================== ====================== ==================
-   :ref:`pre-commit <The pre-commit session>` Ubuntu                 3.9
-   :ref:`safety <The safety session>`         Ubuntu                 3.9
-   :ref:`mypy <The mypy session>`             Ubuntu                 3.9, 3.8, 3.7, 3.6
-   :ref:`tests <The tests session>`           Ubuntu                 3.9, 3.8, 3.7, 3.6
-   :ref:`tests <The tests session>`           Windows                3.9
-   :ref:`tests <The tests session>`           macOS                  3.9
-   :ref:`coverage <The coverage session>`     Ubuntu                 3.9
-   :ref:`docs-build <The docs-build session>` Ubuntu                 3.8
+   :ref:`pre-commit <The pre-commit session>` Ubuntu                 3.10
+   :ref:`safety <The safety session>`         Ubuntu                 3.10
+   :ref:`mypy <The mypy session>`             Ubuntu                 3.10, 3.9, 3.8, 3.7
+   :ref:`tests <The tests session>`           Ubuntu                 3.10, 3.9, 3.8, 3.7
+   :ref:`tests <The tests session>`           Windows                3.10
+   :ref:`tests <The tests session>`           macOS                  3.10
+   :ref:`coverage <The coverage session>`     Ubuntu                 3.10
+   :ref:`docs-build <The docs-build session>` Ubuntu                 3.10
    ========================================== ====================== ==================
 
 The workflow uploads the generated documentation as a `workflow artifact`__.
@@ -2338,7 +2342,6 @@ You can generate these tokens from your account settings on these services.
 The tokens need to be stored as secrets in the repository settings on GitHub:
 
 .. table:: Secrets
-   :class: hypermodern-table
    :widths: auto
 
    =================== ===================
@@ -2639,4 +2642,3 @@ __ https://cjolowicz.github.io/posts/hypermodern-python-01-setup/
 .. _reorder-python-imports: https://github.com/asottile/reorder_python_imports
 .. _reStructuredText: https://docutils.sourceforge.io/rst.html
 .. _sphinx-autobuild: https://github.com/executablebooks/sphinx-autobuild
-.. _sphinx-rtd-theme: https://sphinx-rtd-theme.readthedocs.io
