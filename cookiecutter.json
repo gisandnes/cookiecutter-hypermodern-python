@@ -6,7 +6,7 @@
   "email": "mail@claudiojolowicz.com",
   "github_user": "cjolowicz",
   "version": "0.0.0",
-  "license": ["MIT", "Apache-2.0", "GPL-3.0", "Gjensidige"]
+  "license": ["MIT", "Apache-2.0", "GPL-3.0", "Gjensidige"],
   "development_status": [
     "Development Status :: 1 - Planning",
     "Development Status :: 2 - Pre-Alpha",
