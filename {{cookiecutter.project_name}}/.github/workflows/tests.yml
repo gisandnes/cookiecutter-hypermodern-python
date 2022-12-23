@@ -31,14 +31,14 @@ jobs:
     env:
       NOXSESSION: ${{"{{"}} matrix.session {{"}}"}}
       FORCE_COLOR: "1"
-      PRE_COM{{cookiecutter.license}}_COLOR: "always"
+      PRE_COMMIT_COLOR: "always"
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
 
       - name: Set up Python ${{"{{"}} matrix.python {{"}}"}}
-        uses: actions/setup-python@v2.3.0
+        uses: actions/setup-python@v3
         with:
           python-version: ${{"{{"}} matrix.python {{"}}"}}
 
@@ -46,6 +46,15 @@ jobs:
         run: |
           pip install --constraint=.github/workflows/constraints.txt pip
           pip --version
+
+      - name: Upgrade pip in virtual environments
+        shell: python
+        run: |
+          import os
+          import pip
+
+          with open(os.environ["GITHUB_ENV"], mode="a") as io:
+              print(f"VIRTUALENV_PIP={pip.__version__}", file=io)
 
       - name: Install Poetry
         run: |
@@ -74,7 +83,7 @@ jobs:
           print("::set-output name=result::{}".format(result))
 
       - name: Restore pre-commit cache
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3
         if: matrix.session == 'pre-commit'
         with:
           path: ~/.cache/pre-commit
@@ -84,31 +93,31 @@ jobs:
 
       - name: Run Nox
         run: |
-          nox --force-color --python=${{"{{"}} matrix.python {{"}}"}}
+          nox --python=${{"{{"}} matrix.python {{"}}"}}
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
-        uses: "actions/upload-artifact@v2.2.4"
+        uses: "actions/upload-artifact@v3"
         with:
           name: coverage-data
           path: ".coverage.*"
 
       # - name: Upload documentation
       #   if: matrix.session == 'docs-build'
-      #   uses: actions/upload-artifact@v2.2.4
-      #  with:
-      #    name: docs
-      #    path: docs/_build
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: docs
+      #     path: docs/_build
 
   coverage:
     runs-on: ubuntu-latest
     needs: tests
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2.3.0
+        uses: actions/setup-python@v3
         with:
           python-version: "3.10"
 
@@ -129,20 +138,20 @@ jobs:
           nox --version
 
       - name: Download coverage data
-        uses: actions/download-artifact@v2.0.10
+        uses: actions/download-artifact@v3
         with:
           name: coverage-data
 
       - name: Combine coverage data and display human readable report
         run: |
-          nox --force-color --session=coverage
+          nox --session=coverage
 
       - name: Create coverage report
         run: |
-          nox --force-color --session=coverage -- xml
+          nox --session=coverage -- xml
 
       # - name: Upload coverage report
-      #   uses: codecov/codecov-action@v2.1.0
+      #   uses: codecov/codecov-action@v3.1.0
       #   Uncomment next two lines if repo is private. Add CODECOV_TOKEN as Secrets in Github repo.
       #   with:
       #     token: $[[ secrets.CODECOV_TOKEN ]] and { instead of [. 
